@@ -1,0 +1,28 @@
+<script>
+  const form = document.getElementById('quizForm');
+  const resultDiv = document.getElementById('result');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let score = 0;
+    const formData = new FormData(form);
+    for (let value of formData.values()) {
+      score += parseInt(value, 10);
+    }
+    let category = '';
+    let advice = '';
+    if(score >= 19){ // max is 24 (8 * 3)
+      category = 'Teveel gebruik';
+      advice = 'Je besteedt flink veel tijd aan je telefoon, social media en games. Probeer bewuster te zijn en neem vaker pauzes om te voorkomen dat het je leven te veel beïnvloedt.';
+    } else if (score >= 12) {
+      category = 'Opletten met gebruik';
+      advice = 'Je gebruik is gemiddeld, maar let erop dat het niet te veel wordt. Probeer balans te houden en stel eventueel grenzen.';
+    } else {
+      category = 'Goed gebruik';
+      advice = 'Je gebruikt je telefoon, social media en games op een gezonde en bewuste manier. Houd dit zo vol!';
+    }
+    resultDiv.innerHTML = `<h2>Resultaat: ${category}</h2><p>${advice}</p>`;
+    resultDiv.focus();
+  });
+</script>
+</body>
+</html>
